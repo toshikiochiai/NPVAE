@@ -21,8 +21,9 @@ The project dataset used in this study is an original compound library collected
 Two representative collections of compound structures within the project dataset, namely `collection_A.txt`(provided by Kakeya Lab.) and `collection_B.txt`(provided by Uesugi Lab.), are available.\
 However, Most other compound structures in the project dataset are unpublished, and restrictions apply to the availability of these data, which were used under license for the current study and therefore are not publicly available. 
 
-## Available Data and Parameters
-The saved data from our training on the DrugBank&Project dataset can be found in the `pre-trained` folder. If you want to use it in the following process, please specify this path as `LOAD_PATH`. 
+## Pretrained Parameters
+The saved parameters from our training on the DrugBank&Project dataset can be found in the `pre-trained` folder. These were obtained by including the non-public project datasets in the training.\
+If you want to use it in the following process, please specify this path as `LOAD_PATH`. 
 
 
 ## Program Usage
@@ -45,7 +46,7 @@ python preprocessing.py --smiles_path ./smiles_data/hoge.txt --save_path ./save_
 * --smiles_path, `SMILES_PATH`: Please specify the path of your SMILES data.
 * --save_path, `SAVE_PATH`:Please specify the path to save your obtained data. **Before running this program, please make a new folder named `input_data` under this path. Then, under `input_data`, please make a new folder named `weights`.**
 #### 1.2. Train
-\* Skip this process if you use the pre-trained parameters. \
+(Skip this process if you use the pre-trained parameters.) \
 The training uses multiple GPUs for acceleration. please make sure your GPUs are available.
 ```
 python train.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data --save_path ./param_data
@@ -69,7 +70,7 @@ python calculate_z.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./sav
 * --load_epoch, `LOAD_EPOCH`: Epoch specified for loading parameters. default:`100`
 ***
 ### 3. Evaluate reconstruction accuracy
-\* Skip this process if you use the pre-trained parameters. \
+(Skip this process if you use the pre-trained parameters.) \
 This process does not need to be performed, but it helps to verify the fitting accuracy of the model after training.
 ```
 python evaluate.py --smiles_path ./smiles_data/hoge.txt --saved_path ./output_data
