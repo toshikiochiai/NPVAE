@@ -22,7 +22,7 @@ Two representative collections of compound structures within the project dataset
 However, Most other compound structures in the project dataset are unpublished, and restrictions apply to the availability of these data, which were used under license for the current study and therefore are not publicly available. 
 
 ## Available Data and Parameters
-The saved data from our training on the DrugBank&Project dataset can be found in the `pre-trained` folder. If you want to use it in the following process, please specify this path as `load_path`. 
+The saved data from our training on the DrugBank&Project dataset can be found in the `pre-trained` folder. If you want to use it in the following process, please specify this path as `LOAD_PATH`. 
 
 
 ## Program Usage
@@ -45,6 +45,7 @@ python preprocessing.py --smiles_path ./smiles_data/hoge.txt --save_path ./save_
 * --smiles_path, `SMILES_PATH`: Please specify the path of your SMILES data.
 * --save_path, `SAVE_PATH`:Please specify the path to save your obtained data. **Before running this program, please make a new folder named `input_data` under this path. Then, under `input_data`, please make a new folder named `weights`.**
 #### 1.2. Train
+\* Skip this process if you use the pre-trained parameters. \
 The training uses multiple GPUs for acceleration. please make sure your GPUs are available.
 ```
 python train.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data --save_path ./param_data
@@ -68,6 +69,7 @@ python calculate_z.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./sav
 * --load_epoch, `LOAD_EPOCH`: Epoch specified for loading parameters. default:`100`
 ***
 ### 3. Evaluate reconstruction accuracy
+\* Skip this process if you use the pre-trained parameters. \
 This process does not need to be performed, but it helps to verify the fitting accuracy of the model after training.
 ```
 python evaluate.py --smiles_path ./smiles_data/hoge.txt --saved_path ./output_data
@@ -76,13 +78,13 @@ python evaluate.py --smiles_path ./smiles_data/hoge.txt --saved_path ./output_da
 * --check3D_result, -check3D: This code returns the consistency of three-dimensional structures when this flag is set. (Longer time required for calculations.)
 ***
 ### 4. Visualize latent variables
-The acquired latent variables are dimensionally reduced by tSNE and the visualization results can be obtained as a png file. The png file is saved under the `saved_path` you specified.\
+The acquired latent variables are dimensionally reduced by tSNE and the visualization results can be obtained as a png file. The png file is saved under the `SAVED_PATH` you specified.\
 If you want to colorize and see the distribution of specific compounds, please prepare another txt file describing them in SMILES format.\
 If you just want to see the appearance by color coding for each property information value, there is no need to prepare a separate txt file. In that case, please set the `-color` flag.
 ```
 python visualize.py --smiles_path ./smiles_data/hoge.txt --saved_path ./output_data -check_path ./smiles_data/target_smiles.txt -color
 ```
-* -check_path, --check_smiles_path `CHECK_SMILES_PATH`: Path of the SMILES data describing the compounds you want to visualize. (These compounds must be included in the SMILES data in the original `smiles_path`.)
+* -check_path, --check_smiles_path `CHECK_SMILES_PATH`: Path of the SMILES data describing the compounds you want to visualize. (These compounds must be included in the SMILES data in the `SMILES_PATH` above.)
 * -color, --color_code: Whether to color-code according to property information values.
 ***
 ### 5. Generate new compound structures
@@ -90,7 +92,7 @@ You can generate new compound structures from the space around a compound you sp
 ```
 python generate.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data --load_path ./params_data --saved_path ./output_data -target `c1ccccc1`
 ```
-* -target, --target_smiles, `TARGET_SMILES`: SMILES of the target point compound. (The target SMILES must be included in the SMILES data in the `smiles_path`)
+* -target, --target_smiles, `TARGET_SMILES`: SMILES of the target point compound. (The target SMILES must be included in the SMILES data in the `SMILES_PATH`)
 * -ngen, --num_gen_mols, `NUM_GEN_MOLS`: Number of new compounds generated before refining. default:`10000`
 * -nmol, --num_new_mols, `NUM_NEW_MOLS`: Number of new compounds generated after refining. default:`5000`
 * -r, --search_radius, `SEARCH_RADIUS`: Search radius from the target compound. default:`1`
