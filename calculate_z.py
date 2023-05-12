@@ -53,13 +53,13 @@ def main(args):
     with torch.no_grad():
         for iter, (g, bg, bg_node, m_ecfp, smiles, feats, prop, root_answer, topo_ans_list,\
                bond_ans_list, label_ans_list, target_id_list) in enumerate(test_loader):
-            g=g.to(torch.device(args.device))
+            g = g.to(torch.device(args.device))
             n = g.number_of_nodes()
             h = torch.zeros((n, args.h_size)).to(args.device)
             c = torch.zeros((n, args.h_size)).to(args.device)
-            feat=feats[0].to(args.device)
-            m_ecfp=m_ecfp[0].to(args.device)
-            smiles=smiles[0]
+            feat = feats[0].to(args.device)
+            m_ecfp = m_ecfp[0].to(args.device)
+            smiles = smiles[0]
             if args.return2D:
                 z, dec_smi, g = model(g, None, None, m_ecfp, \
                                                 smiles, None, feat, h, c, \
