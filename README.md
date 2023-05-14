@@ -19,13 +19,13 @@ The datasets used in this study is in the `smiles_data` file.\
 `evaluation_*.txt` is the evaluation dataset divided for train, test and validation, and `drugbank_smiles.txt` is the processed DrugBank dataset.\
 The project dataset used in this study is an original compound library collected from various laboratories through the Ministry of Education, Culture, Sports, Science, and Technology-designated project, “Frontiers of Chemical Communication”, in which this research participated. \
 Two representative collections of compound structures within the project dataset, namely `collection_A.txt`(provided by Kakeya Lab.) and `collection_B.txt`(provided by Uesugi Lab.), are available.\
-However, Most other compound structures in the project dataset are unpublished, and restrictions apply to the availability of these data, which were used under license for the current study and therefore are not publicly available. 
+However, most other compound structures in the project dataset are unpublished, and restrictions apply to the availability of these data, which were used under license for the current study and therefore are not publicly available. 
 
 ## Pretrained Parameters
 The saved parameters from our training on the DrugBank&Project dataset can be found in the `pre-trained` folder. These were obtained by including the non-public project datasets in the training.\
 If you want to use it in the following process, please specify this path as `LOAD_PATH`. \
 `no_property_model.iter-100` is the parameters obtained by training the DrugBank&Project dataset with only the structural information of the compounds. \
-On the other hand, `nplikeness_model.iter-100` is the parameters obtained by adding property information along with structural information, and we recommend using this one unless there is a particular reason.
+On the other hand, `nplikeness_model.iter-100` is the parameters obtained by adding the NP-likeness score as functional information along with structural information, and we recommend using this one unless there is a particular reason.
 
 
 ## Program Usage
@@ -57,7 +57,7 @@ python train.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data
 * --save_path, `SAVE_PATH`: Please specify the path to save parameters of this model after training.
 * --max_epoch, `MAX_EPOCH`: Number of epochs. default:`100`
 * --save_epoch, `SAVE_EPOCH`: Epoch intervals to save parameters. default:`20`
-* --prop_info, `PROP_INFO`: Property information used for learning. **If you want to specify a property other than `nplikeness` or `logp`, please name the pickle file in which you saved the property `prop_info` and save it in the `input_data` folder.** default:`nplikeness`
+* --prop_info, `PROP_INFO`: Functional information used for learning. **If you want to specify a property other than `nplikeness` or `logp`, please name the pickle file in which you saved the property `prop_info` and save it in the `input_data` folder.** default:`nplikeness`
 ***
 ### 2. Calculate latent variables
 You can calculate latent variables corresponding to your input compounds based on learned parameters.\
@@ -83,12 +83,12 @@ python evaluate.py --smiles_path ./smiles_data/hoge.txt --saved_path ./output_da
 ### 4. Visualize latent variables
 The acquired latent variables are dimensionally reduced by tSNE and the visualization results can be obtained as a png file. The png file is saved under the `SAVED_PATH` you specified.\
 If you want to colorize and see the distribution of specific compounds, please prepare another txt file describing them in SMILES format.\
-If you just want to see the appearance by color coding for each property information value, there is no need to prepare a separate txt file. In that case, please set the `-color` flag.
+If you just want to see the appearance by color coding for each functional information value, there is no need to prepare a separate txt file. In that case, please set the `-color` flag.
 ```
 python visualize.py --smiles_path ./smiles_data/hoge.txt --saved_path ./output_data -check_path ./smiles_data/target_smiles.txt -color
 ```
 * -check_path, --check_smiles_path `CHECK_SMILES_PATH`: Path of the SMILES data describing the compounds you want to visualize. (These compounds must be included in the SMILES data in the `SMILES_PATH` above.)
-* -color, --color_code: Whether to color-code according to property information values.
+* -color, --color_code: Whether to color-code according to functional information values.
 ***
 ### 5. Generate new compound structures
 You can generate new compound structures from the space around a compound you specified. A SDF file is saved under the `saved_path` you specified.
