@@ -47,7 +47,7 @@ python preprocessing.py --smiles_path ./smiles_data/hoge.txt --save_path ./save_
 ```
 * --smiles_path, `SMILES_PATH`: Please specify the path of your SMILES data.
 * --save_path, `SAVE_PATH`:Please specify the path to save your obtained data. **Before running this program, please make a new folder named `input_data` under this path. Then, under `input_data`, please make a new folder named `weights`.**
-#### 1.2. Train
+#### 1.2. Training
 (Skip this process if you use the pre-trained parameters.) \
 The training uses multiple GPUs for acceleration. please make sure your GPUs are available.
 ```
@@ -63,7 +63,7 @@ python train.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data
 You can calculate latent variables corresponding to your input compounds based on learned parameters.\
 **If you want to obtain latent variables that match your compound structure based on published parameters without training, please run `preprocessing.py` first to complete the preprocessing. (See procedure 1.1 above.)**
 ```
-python calculate_z.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data --load_path ./params_data --save_path ./output_data
+python calculate_z.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data --load_path ./param_data --save_path ./output_data
 ```
 * --smiles_path, `SMILES_PATH`: Same as below.
 * --prepared_path, `PREPARED_PATH`: Same as below.
@@ -93,7 +93,7 @@ python visualize.py --smiles_path ./smiles_data/hoge.txt --saved_path ./output_d
 ### 5. Generate new compound structures
 You can generate new compound structures from the space around a compound you specified. A SDF file is saved under the `saved_path` you specified.
 ```
-python generate.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data --load_path ./params_data --saved_path ./output_data -target `c1ccccc1`
+python generate.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data --load_path ./param_data --saved_path ./output_data -target `c1ccccc1`
 ```
 * -target, --target_smiles, `TARGET_SMILES`: SMILES of the target point compound. (The target SMILES must be included in the SMILES data in the `SMILES_PATH`)
 * -ngen, --num_gen_mols, `NUM_GEN_MOLS`: Number of new compounds generated before refining. default:`10000`
