@@ -1,4 +1,4 @@
-# Deep generative model of constructing chemical latent space for macromolecular structures
+# Deep generative model of constructing chemical latent space for small to large molecular structures with 3D complexity
 
 ## Overview
 The structural diversity of chemical libraries, which are systematic collections of compounds that have potential to bind to biomolecules, can be represented by chemical latent space. \
