@@ -1,4 +1,4 @@
-# Deep generative model of constructing chemical latent space for small to large molecular structures with 3D complexity
+# Deep generative model of constructing chemical latent space for large molecular structures with 3D complexity
 
 ## Overview
 The structural diversity of chemical libraries, which are systematic collections of compounds that have potential to bind to biomolecules, can be represented by chemical latent space. \
@@ -47,6 +47,7 @@ python preprocessing.py --smiles_path ./smiles_data/hoge.txt --save_path ./save_
 ```
 * --smiles_path, `SMILES_PATH`: Please specify the path of your SMILES data.
 * --save_path, `SAVE_PATH`:Please specify the path to save your obtained data. **Before running this program, please make a new folder named `input_data` under this path. Then, under `input_data`, please make a new folder named `weights`.**
+* -freq, --frequency, `FREQUENCY`: Frequency threshold for applying decomposition. Acyclic structures smaller than this value are subjected to decomposition focusing on the functional groups. This means that the larger this value is set, the smaller scale of decomposition is performed. default:`5`
 #### 1.2. Training
 (Skip this process if you use the pre-trained parameters.) \
 The training uses multiple GPUs for acceleration. please make sure your GPUs are available.
@@ -87,7 +88,7 @@ If you just want to see the appearance by color coding for each functional infor
 ```
 python visualize.py --smiles_path ./smiles_data/hoge.txt --saved_path ./output_data -check_path ./smiles_data/target_smiles.txt -color
 ```
-* -check_path, --check_smiles_path `CHECK_SMILES_PATH`: Path of the SMILES data describing the compounds you want to visualize. (These compounds must be included in the SMILES data in the `SMILES_PATH` above.)
+* -check_path, --check_smiles_path, `CHECK_SMILES_PATH`: Path of the SMILES data describing the compounds you want to visualize. (These compounds must be included in the SMILES data in the `SMILES_PATH` above.)
 * -color, --color_code: Whether to color-code according to functional information values.
 ***
 ### 5. Generate new compound structures
