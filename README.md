@@ -100,3 +100,14 @@ python generate.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_d
 * -ngen, --num_gen_mols, `NUM_GEN_MOLS`: Number of new compounds generated before refining. default:`10000`
 * -nmol, --num_new_mols, `NUM_NEW_MOLS`: Number of new compounds generated after refining. default:`5000`
 * -r, --search_radius, `SEARCH_RADIUS`: Search radius from the target compound. default:`1`
+
+## License
+
+This software is released under a custom license.
+
+Academic use of this software is free and does not require any permission.
+We encourage academic users to cite our research paper (if applicable).
+
+For commercial use, please contact the author for permission at [toshiki-ochiai@dna.bio.keio.ac.jp].
+
+By using this software, you acknowledge and agree to the terms of use.
