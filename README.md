@@ -22,8 +22,8 @@ Two representative collections of compound structures within the project dataset
 However, most other compound structures in the project dataset are unpublished, and restrictions apply to the availability of these data, which were used under license for the current study and therefore are not publicly available. 
 
 ## Pretrained Parameters
-The saved parameters from our training on the DrugBank&Project dataset can be found in the `pre-trained` folder. These were obtained by including the non-public project datasets in the training.\
-If you want to use it in the following process, please specify this path as `LOAD_PATH`. \
+The saved parameters from our training on the DrugBank&Project dataset can be downloaded from the link published in the `pre-trained` folder. After downloading, please upzip and place them in it. \
+These parameters were obtained by including the non-public project datasets in the training. If you want to use them in the following process, please specify this path as `LOAD_PATH`. \
 `no_property_model.iter-100` is the parameters obtained by training the DrugBank&Project dataset with only the structural information of the compounds. \
 On the other hand, `nplikeness_model.iter-100` is the parameters obtained by adding the NP-likeness score as functional information along with structural information, and we recommend using this one unless there is a particular reason.
 
