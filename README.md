@@ -17,6 +17,7 @@ In this study, we developed a new deep-learning method, called NP-VAE, based on 
 By using `npvae_env.yml` in the `env` folder, you can build an anaconda environment exactly the same as this research.
 ```
 conda env create -f npvae_env.yml
+conda activate npvae_env
 ```
 
 ## Compound Datasets
