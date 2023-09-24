@@ -372,4 +372,3 @@ dependencies:
     - docopt==0.6.2
     - pipreqs==0.4.13
     - yarg==0.1.9
-prefix: /home/jupyter-user/opt/anaconda3
