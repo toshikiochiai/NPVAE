@@ -14,6 +14,11 @@ In this study, we developed a new deep-learning method, called NP-VAE, based on 
   * scikit_learn 0.22.1
   * torch 1.7.0
 
+By using `npvae_env.yml` in the `env` folder, you can build an anaconda environment exactly the same as this research.
+```
+conda env create -f npvae_env.yml
+```
+
 ## Compound Datasets
 The datasets used in this study is in the `smiles_data` file.\
 `evaluation_*.txt` is the evaluation dataset divided for train, test and validation, and `drugbank_smiles.txt` is the processed DrugBank dataset.\
