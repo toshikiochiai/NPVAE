@@ -39,6 +39,7 @@ Please select and execute the following python files according to your purpose.
 * `preprocessing.py` performs preprocessing. Please run it first when you want to train this model.
 * `train.py` is executed when you want to train this model on your own data set and obtain new parameters.
 * `calculate_z.py` calculates latent variables corresponding to input compounds based on learned parameters.
+* `calculate_z_simple.py` calculates latent variables in the same way as above. This version is used when using the published parameters.
 * `evaluate.py` is executed to evaluate the reconstruction accuracy after training.
 * `visualize.py` visualizes latent variables by dimensionality reduction. You can also colorize and see the distribution of specific compounds you set.
 * `generate.py` generates new compound structures from the space around a specified compound based on a learned model.
@@ -68,15 +69,21 @@ python train.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data
 ***
 ### 2. Calculate latent variables
 You can calculate latent variables corresponding to your input compounds based on learned parameters.\
-**If you want to obtain latent variables that match your compound structure based on published parameters without training, please run `preprocessing.py` first to complete the preprocessing. (See procedure 1.1 above.)**
 ```
 python calculate_z.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data --load_path ./param_data --save_path ./output_data
 ```
-* --smiles_path, `SMILES_PATH`: Same as below.
-* --prepared_path, `PREPARED_PATH`: Same as below.
+* --smiles_path, `SMILES_PATH`: Same as above.
+* --prepared_path, `PREPARED_PATH`: Same as above.
 * --load_path, `LOAD_PATH`: The path where learned parameters are saved. 
 * --save_path, `SAVE_PATH`: Path to save latent variables and other output values.
 * --load_epoch, `LOAD_EPOCH`: Epoch specified for loading parameters. default:`100`
+
+**If you want to obtain latent variables that match your compound structure based on published parameters without training, please run `preprocessing.py` first to complete the preprocessing. (See procedure 1.1 above.)**\
+**Then, instead of running `calculate_z.py`, change the downloaded parameter file name to `model.iter-100` and run `calculate_z_simple.py`.**
+```
+python calculate_z_simple.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data --load_path ./pre-trained --save_path ./output_data
+```
+
 ***
 ### 3. Evaluate reconstruction accuracy
 (Skip this process if you use the pre-trained parameters.) \
@@ -98,7 +105,8 @@ python visualize.py --smiles_path ./smiles_data/hoge.txt --saved_path ./output_d
 * -color, --color_code: Whether to color-code according to functional information values.
 ***
 ### 5. Generate new compound structures
-You can generate new compound structures from the space around a compound you specified. A SDF file is saved under the `saved_path` you specified.
+You can generate new compound structures from the space around a compound you specified. A SDF file is saved under the `saved_path` you specified.\
+If you use published parameters without training, please set `prepared_path` to `pre-trained`.
 ```
 python generate.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data --load_path ./param_data --saved_path ./output_data -target `c1ccccc1`
 ```
