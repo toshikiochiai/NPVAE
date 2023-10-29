@@ -68,7 +68,7 @@ python train.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data
 * --prop_info, `PROP_INFO`: Functional information used for learning. **If you want to specify a property other than `nplikeness` or `logp`, please name the pickle file in which you saved the property `prop_info` and save it in the `input_data` folder.** default:`nplikeness`
 ***
 ### 2. Calculate latent variables
-You can calculate latent variables corresponding to your input compounds based on learned parameters.\
+You can calculate latent variables corresponding to your input compounds based on learned parameters.
 ```
 python calculate_z.py --smiles_path ./smiles_data/hoge.txt --prepared_path ./save_data --load_path ./param_data --save_path ./output_data
 ```
